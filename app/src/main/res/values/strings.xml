@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Flight</string>
+    <string name="toolbar_title">Trips</string>
+    <string name="flight_card_title">Flight to %s</string>
+    <string name="flight_detail_gate">Gate : - -</string>
+    <string name="flight_detail_seat">Seat : - -</string>
+    <string name="flight_detail_terminal">Terminal : - -</string>
+    <string name="flight_detail_name">Flight : %s</string>
+    <string name="flight_non_stop">Non-Stop</string>
+    <string name="content_desc_flight_detail_qr">QR Code</string>
+    <string name="content_desc_flight_detail_plane">Airplane</string>
+</resources>

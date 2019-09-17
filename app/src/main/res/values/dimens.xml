@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_padding">9dp</dimen>
+    <dimen name="normal_padding">16dp</dimen>
+    <dimen name="large_padding">20dp</dimen>
+    <dimen name="xlarge_padding">32dp</dimen>
+    <dimen name="xxlarge_padding">40dp</dimen>
+
+    <dimen name="small_font">12sp</dimen>
+    <dimen name="normal_font">16sp</dimen>
+    <dimen name="large_font">20sp</dimen>
+
+    <dimen name="qr_code_size">110dp</dimen>
+</resources>

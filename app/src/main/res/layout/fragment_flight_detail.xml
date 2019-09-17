@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="flight"
+            type="com.ns.flight.Flight" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/normal_padding"
+        style="@style/FlightCard">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:background="@color/blue"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:paddingStart="@dimen/xlarge_padding"
+                android:paddingTop="44dp"
+                android:paddingEnd="@dimen/xlarge_padding"
+                android:paddingBottom="40dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tv_departure_airport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{flight.departureAirport}"
+                        android:textAllCaps="true"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        tools:text="BNE"/>
+
+                    <TextView
+                        android:id="@+id/tv_departure_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{flight.departureCity}"
+                        android:textColor="@android:color/white"
+                        tools:text="Brisbane"/>
+
+                    <TextView
+                        android:id="@+id/tv_departure_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_padding"
+                        android:textColor="@android:color/white"
+                        app:flightDetailTime="@{flight.departureDate}"
+                        tools:text="Wed, 21 Aug 07:15 AM"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:contentDescription="@string/content_desc_flight_detail_plane"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/normal_padding"
+                    android:src="@drawable/ic_plane"
+                    android:tint="@android:color/white"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/tv_destination_airport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{flight.arrivalAirport}"
+                        android:textSize="40sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        tools:text="BNE"/>
+
+                    <TextView
+                        android:id="@+id/tv_destination_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{flight.arrivalCity}"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/white"
+                        tools:text="Brisbane"/>
+
+                    <TextView
+                        android:id="@+id/tv_destination_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_padding"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/white"
+                        app:flightDetailTime="@{flight.arrivalDate}"
+                        tools:text="Wed, 21 Aug 07:15 AM"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="40dp"
+                android:paddingBottom="40dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/xlarge_padding"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_vertical_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/xlarge_padding"/>
+
+                <TextView
+                    android:id="@+id/tv_flight_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/normal_font"
+                    android:text="@{@string/flight_detail_name(flight.airlineCode + flight.flightNum)}"
+                    app:layout_constraintStart_toEndOf="@id/guideline_vertical_start"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Flight : QF105"/>
+
+                <TextView
+                    android:id="@+id/tv_gate_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flight_detail_gate"
+                    android:textSize="@dimen/normal_font"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                    tools:text="Gate : - -"/>
+
+                <TextView
+                    android:id="@+id/tv_terminal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flight_detail_terminal"
+                    android:textSize="@dimen/normal_font"
+                    android:layout_marginTop="@dimen/xlarge_padding"
+                    app:layout_constraintTop_toBottomOf="@id/tv_flight_name"
+                    app:layout_constraintStart_toEndOf="@id/guideline_vertical_start"
+                    tools:text="Terminal : D"/>
+
+                <TextView
+                    android:id="@+id/tv_seat_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flight_detail_seat"
+                    android:textSize="@dimen/normal_font"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintTop_toTopOf="@id/tv_terminal"
+                    app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                    tools:text="Seat : - -"/>
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier_info_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:constraint_referenced_ids="tv_flight_name,tv_terminal"/>
+
+                <View
+                    android:id="@+id/divider"
+                    android:background="@drawable/background_divider"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/xxlarge_padding"
+                    app:layout_constraintTop_toTopOf="@id/barrier_info_horizontal"
+                    style="@style/FlightCard.Divider"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/qr_code_guideline"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintGuide_percent="0.5"/>
+
+                <ImageView
+                    android:contentDescription="@string/content_desc_flight_detail_qr"
+                    android:layout_width="@dimen/qr_code_size"
+                    android:layout_height="@dimen/qr_code_size"
+                    android:layout_marginTop="@dimen/xxlarge_padding"
+                    app:qrCode="@{flight.airlineCode}"
+                    app:layout_constraintTop_toTopOf="@id/divider"
+                    app:layout_constraintStart_toStartOf="@id/qr_code_guideline"
+                    app:layout_constraintEnd_toEndOf="@id/qr_code_guideline"
+                    tools:src="@drawable/ic_launcher_background"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="eventListener"
+            type="com.ns.flight.ui.flightlist.EventListener" />
+
+        <variable
+            name="flight"
+            type="com.ns.flight.Flight" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{() -> eventListener.onFlightClicked(flight)}"
+        style="@style/FlightCard">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingBottom="@dimen/large_padding">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/normal_padding"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/normal_padding"/>
+
+            <TextView
+                android:id="@+id/tv_flight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/normal_font"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_start"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:destinationCity="@{flight.arrivalCity}"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Flight to Brisbane" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                android:layout_marginTop="@dimen/small_padding"
+                app:layout_constraintTop_toBottomOf="@id/tv_flight"/>
+
+            <TextView
+                android:id="@+id/tv_departure_airport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{flight.departureAirport}"
+                android:textAllCaps="true"
+                android:layout_marginTop="@dimen/large_padding"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                tools:text="MEL" />
+
+            <TextView
+                android:id="@+id/tv_departure_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_font"
+                android:textColor="@color/blue"
+                app:flightTime="@{flight.departureDate}"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_departure_airport"
+                tools:text="13:15" />
+
+            <TextView
+                android:id="@+id/tv_departure_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{flight.departureCity}"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_departure_time"
+                app:layout_constraintEnd_toStartOf="@+id/path_plane"
+                tools:text="Melbourne" />
+
+            <com.ns.flight.ui.flightlist.PlanePathView
+                android:id="@+id/path_plane"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintHorizontal_weight="3"
+                app:layout_constraintEnd_toStartOf="@id/tv_destination_city"
+                app:layout_constraintStart_toEndOf="@id/tv_departure_city"
+                app:layout_constraintTop_toTopOf="@id/tv_destination_time" />
+
+            <TextView
+                android:id="@+id/tv_destination_airport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{flight.arrivalAirport}"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toTopOf="@id/tv_departure_airport"
+                tools:text="BNE" />
+
+            <TextView
+                android:id="@+id/tv_destination_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/large_font"
+                android:textColor="@color/blue"
+                app:flightTime="@{flight.arrivalDate}"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_destination_airport"
+                tools:text="23:15" />
+
+            <TextView
+                android:id="@+id/tv_destination_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{flight.arrivalCity}"
+                android:textAlignment="textEnd"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/path_plane"
+                app:layout_constraintEnd_toStartOf="@id/guideline_vertical_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_destination_time"
+                tools:text="Brisbane" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_duration"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.5"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                app:layout_constraintStart_toEndOf="@id/tv_departure_time"
+                app:layout_constraintEnd_toStartOf="@id/tv_destination_time" />
+
+            <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/silver"
+                android:textSize="@dimen/small_font"
+                android:textAlignment="center"
+                app:flightDuration="@{flight.duration}"
+                app:layout_constraintBottom_toTopOf="@id/path_plane"
+                app:layout_constraintStart_toStartOf="@id/guideline_duration"
+                app:layout_constraintEnd_toEndOf="@id/guideline_duration"
+                tools:text="2 hr 30 min"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/flight_non_stop"
+                android:textAlignment="center"
+                android:textColor="@color/silver"
+                android:textSize="@dimen/small_font"
+                app:layout_constraintEnd_toEndOf="@id/guideline_duration"
+                app:layout_constraintStart_toStartOf="@id/guideline_duration"
+                app:layout_constraintTop_toBottomOf="@id/path_plane"
+                tools:text="Non-Stop" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

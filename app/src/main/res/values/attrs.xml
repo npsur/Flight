@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PlanePathView">
+        <attr name="android:dashGap" />
+        <attr name="android:dashWidth"  />
+        <attr name="android:color" />
+        <attr name="planeIcon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="DateSeparatorDecoration">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+    </declare-styleable>
+
+    <declare-styleable name="SpaceDecoration">
+        <attr name="android:padding" />
+    </declare-styleable>
+</resources>
